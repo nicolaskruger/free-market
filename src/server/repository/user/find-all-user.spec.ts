@@ -3,6 +3,10 @@ import { findAllUser } from "./find-all-user";
 
 jest.mock("@/server/utils/file");
 
+const mockFindAllUser = (users: User[]) => {
+  jest.mocked(findAllUser).mockResolvedValue(users);
+};
+
 describe("find all user", () => {
   it("should find all user", async () => {
     jest.mocked(readFileConverter).mockReturnValue([]);
@@ -12,3 +16,5 @@ describe("find all user", () => {
     expect(user).toStrictEqual([]);
   });
 });
+
+export { mockFindAllUser };
