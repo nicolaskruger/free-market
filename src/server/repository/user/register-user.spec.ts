@@ -8,6 +8,9 @@ jest.mock("@/server/utils/file");
 const newUser: User = { email: "used@email", name: "jd", password: "123" };
 
 describe("registerUser", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   it("should not register an user when email is already in use", async () => {
     mockFindAllUser([{ email: "used@email", name: "jd", password: "123" }]);
 
@@ -16,7 +19,7 @@ describe("registerUser", () => {
       expect("not this line").not.toBe("not this line");
     } catch (error) {
       const e = error as Error;
-      expect(e.message).toBe("email all ready in use");
+      expect(e.message).toBe("email already in use");
     }
   });
 
