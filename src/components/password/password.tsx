@@ -17,7 +17,14 @@ const Password = ({ ...props }: PasswordProps) => {
         type={show ? "text" : "password"}
         {...props}
       />
-      <button data-testid="button-password">{show ? "hide" : "show"}</button>
+      <button
+        onClick={() => {
+          setShow(!show);
+        }}
+        data-testid="button-password"
+      >
+        {show ? "hide" : "show"}
+      </button>
     </>
   );
 };
